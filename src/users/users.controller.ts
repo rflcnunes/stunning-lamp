@@ -24,10 +24,15 @@ export class UsersController {
     return this.usersService.create(body);
   }
 
-  @Get()
+  @Get('/health-check')
   heathCheckUsers(@Res() res) {
     const data = { message: 'Users is UP' };
     return res.json(data);
+  }
+
+  @Get()
+  async listUsers() {
+    return this.usersService.list();
   }
 
   @Put(':id')
