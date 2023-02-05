@@ -1,5 +1,6 @@
+import { UpdatePutUserDTO } from './dto/update-put-user.dto';
 import { CreateUserDTO } from './dto/create-user.dto';
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -12,5 +13,14 @@ export class UsersController {
   heathCheckUsers(@Res() res) {
     const data = { message: 'Users is UP' };
     return res.json(data);
+  }
+
+  @Put(':id')
+  async update(@Body() body: UpdatePutUserDTO, @Param() params) {
+    return {
+      method: 'PUT',
+      body: body,
+      params: params,
+    };
   }
 }
