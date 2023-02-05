@@ -4,6 +4,7 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -40,6 +41,13 @@ export class UsersController {
       method: 'PATCH',
       body: body,
       params: params,
+    };
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id) {
+    return {
+      id: id,
     };
   }
 }
