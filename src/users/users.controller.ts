@@ -1,8 +1,12 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { CreateUserDTO } from './dto/create-user.dto';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
-  // constructor(private readonly )
+  @Post()
+  async cerate(@Body() body: CreateUserDTO) {
+    return { body: body };
+  }
 
   @Get()
   heathCheckUsers(@Res() res) {
