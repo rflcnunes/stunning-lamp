@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import { UpdatePatchUserDTO } from './dto/update-patch-user.dto';
 import { UpdatePutUserDTO } from './dto/update-put-user.dto';
 import { CreateUserDTO } from './dto/create-user.dto';
@@ -16,9 +17,11 @@ import {
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   @Post()
-  async cerate(@Body() body: CreateUserDTO) {
-    return { body: body };
+  async create(@Body() body: CreateUserDTO) {
+    return this.usersService.create(body);
   }
 
   @Get()

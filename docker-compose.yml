@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node
+    restart: always
+    ports:
+      - 3030:3030
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - codebook_network
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootroot
+      MYSQL_DATABASE: codebook
+      MYSQL_USER: codebook
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - codebook_network
+
+
+volumes:
+  node:
+    driver: local
+
+networks:
+  codebook_network:
+    driver: bridge
