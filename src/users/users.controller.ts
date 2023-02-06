@@ -35,6 +35,11 @@ export class UsersController {
     return this.usersService.list();
   }
 
+  @Get(':id')
+  async getUserById(@Param('id', ParseIntPipe) id: number) {
+    return await this.usersService.show(id);
+  }
+
   @Put(':id')
   async update(@Body() body: UpdatePutUserDTO, @Param() params) {
     return {
