@@ -41,20 +41,28 @@ export class UsersController {
   }
 
   @Put(':id')
-  async update(@Body() body: UpdatePutUserDTO, @Param() params) {
+  async update(
+    @Body() body: UpdatePutUserDTO,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    const response = await this.usersService.update(id, body);
     return {
       method: 'PUT',
-      body: body,
-      params: params,
+      body: response,
+      params: id,
     };
   }
 
   @Patch(':id')
-  async updatePartial(@Body() body: UpdatePatchUserDTO, @Param() params) {
+  async updatePartial(
+    @Body() body: UpdatePatchUserDTO,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    const response = await this.usersService.updatePartial(id, body);
     return {
       method: 'PATCH',
-      body: body,
-      params: params,
+      body: response,
+      params: id,
     };
   }
 
